@@ -1,0 +1,90 @@
+$white: #fff;
+$black: #000;
+$opacityBlack: rgba(0, 0, 0, 0.9);
+
+// **********************
+// MIXINS
+
+@mixin transition ($proporties) {
+  -webkit-transition: $proporties;
+       -o-transition: $proporties;
+          transition: $proporties;
+}
+@mixin flex () {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+@mixin flex-direction ($direction) {
+  -webkit-flex-direction: $direction;
+     -moz-flex-direction: $direction;
+      -ms-flex-direction: $direction;
+          flex-direction: $direction;
+}
+@mixin align-items ($proporties) {
+  -webkit-box-align: $proporties;
+  -webkit-align-items: $proporties;
+      -ms-flex-align: $proporties;
+          align-items: $proporties;
+}
+@mixin justify-content ($proporties) {
+  -webkit-box-pack: $proporties;
+  -webkit-justify-content: $proporties;
+      -ms-flex-pack: $proporties;
+          justify-content: $proporties;
+}
+@mixin box-sizing ($proporties) {
+  -webkit-box-sizing: $proporties;
+          box-sizing: $proporties;
+}
+
+// **********************
+// STYLES
+
+html {
+ @include box-sizing (border-box);
+}
+*, *:before, *:after {
+  @include box-sizing (inherit);
+}
+body {
+  margin: 0;
+}
+
+.main-photo {
+  max-width: 300px;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  &__overlay {
+    height: 100%;
+    background-color: $opacityBlack;
+    @include flex;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include justify-content(center);
+  }
+  &__photo {
+  padding: 10px;
+  display: block;
+  }
+  &__title {
+    padding: 10px;
+    margin: 0;
+  }
+  &__content-wrapper {
+    position: relative;
+    background-color: white;
+  }
+  &__close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

@@ -1,0 +1,54 @@
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit; }
+
+body {
+  margin: 0; }
+
+.main-photo {
+  max-width: 300px; }
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+  .lightbox__overlay {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+  .lightbox__photo {
+    padding: 10px;
+    display: block; }
+  .lightbox__title {
+    padding: 10px;
+    margin: 0; }
+  .lightbox__content-wrapper {
+    position: relative;
+    background-color: white; }
+  .lightbox__close-btn {
+    position: absolute;
+    top: 0;
+    right: 0; }
+
+/*# sourceMappingURL=lightbox.css.map */
