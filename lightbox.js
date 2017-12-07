@@ -39,17 +39,18 @@ stąd "wydostać na zewnątrz".
 
   function click(ev) {
     ev.preventDefault();
-    const imageSource = this.getAttribute('href');
+    const imageSource = this.getAttribute('href'),
           imageTitle = this.getAttribute('data-title'),
           miniImage = this.querySelector('img'),
           imageAlt = miniImage.getAttribute('alt'),
           dataLightbox = this.getAttribute('data-lightbox');
 
-    const lightbox = createLightbox(imageSource, imageTitle, imageAlt);
-    matchLightboxSize(lightbox);
-    closeLightbox(lightbox);
-
-    return;
+    return {
+      imageSource: imageSource,
+      imageTitle: imageTitle,
+      imageAlt: imageAlt,
+      dataLightbox: dataLightbox
+    };
   }
 
   function createLightbox(a, b, c) {
@@ -107,7 +108,13 @@ stąd "wydostać na zewnątrz".
 
 //wywoływanie
   const anchorsArr = getAnchors();
-  const imageSource = addClick(anchorsArr);
+// ???????????
+  addClick(anchorsArr);
+
+
+//  const lightbox = createLightbox(imageSource, imageTitle, imageAlt);
+//  matchLightboxSize(lightbox);
+//  closeLightbox(lightbox);
 
 }, false);
 
