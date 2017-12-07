@@ -22,32 +22,34 @@ Powinienem chyba raczej zastosować forEach(?). Ogólnie próbowałem zrobić
 event delegation na body dla ev.target.nodeName==='A' (z atrybutem), ale nie wiem
 dlaczego event nie działał dla "A"... (a np. dla "IMG" działał)
 */
-  function clickAnchor(a) {
+  function addClick(a) {
     for (var i = 0; i < a.length; i++) {
-      a[i].addEventListener('click', function(ev) {
-        ev.preventDefault();
-        const imageSource = this.getAttribute('href'),
-              imageTitle = this.getAttribute('data-title'),
-              miniImage = this.querySelector('img');
-              imageAlt = miniImage.getAttribute('alt');
-// i wywołuję poniższe funkcje budujące lightboxa, dopasowujące, usuwające
-
+      a[i].addEventListener('click', click, false);
 /*
-Zastanawiam się czy funkcja clickAnchor(a) nie powinna zwracać zmiennych:
+Zastanawiam się czy funkcja addClick(a) nie powinna zwracać zmiennych:
 imageSource, imageTitle, imageAlt: https://stackoverflow.com/questions/2917175/return-multiple-values-in-javascript 
-a poniższe funkcje budujące/dopasowujące/usuwające czy nie powinny być wywoływane
+zawartych w funkcji click(ev) a poniższe funkcje budujące/dopasowujące/usuwające czy nie powinny być wywoływane
 na samym końcu niniejszego dokumentu...
 Ale chyba "zagnieździłem" się listenerem "click" i na razie nie wiem jak się
 stąd "wydostać na zewnątrz".
 */
-        const lightbox = createLightbox(imageSource, imageTitle, imageAlt);
-        matchLightboxSize(lightbox);
-        closeLightbox(lightbox);
-
-        return;
-      }, false);
     }
   return;
+  }
+
+  function click(ev) {
+    ev.preventDefault();
+    const imageSource = this.getAttribute('href');
+          imageTitle = this.getAttribute('data-title'),
+          miniImage = this.querySelector('img'),
+          imageAlt = miniImage.getAttribute('alt'),
+          dataLightbox = this.getAttribute('data-lightbox');
+
+    const lightbox = createLightbox(imageSource, imageTitle, imageAlt);
+    matchLightboxSize(lightbox);
+    closeLightbox(lightbox);
+
+    return;
   }
 
   function createLightbox(a, b, c) {
@@ -69,7 +71,8 @@ stąd "wydostać na zewnątrz".
           '</p>' +
           '<button class="lightbox__close-btn">X</button>' +
         '</div>' +
-      '</div>'
+      '</div>';
+
     return lightbox;
   }
 
@@ -104,8 +107,7 @@ stąd "wydostać na zewnątrz".
 
 //wywoływanie
   const anchorsArr = getAnchors();
-  clickAnchor(anchorsArr);
-
+  const imageSource = addClick(anchorsArr);
 
 }, false);
 
